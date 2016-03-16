@@ -41,34 +41,46 @@
 <?php 
 if (isset($_SESSION['valid'])) 
 {
-    $json = file_get_contents($jsonURL, FILE_USE_INCLUDE_PATH);
-    $json = json_decode($json, true);
-    echo "<div>Simulator : ".$json['Version']."</div>";
-    echo '<div class="table-responsive">';
-    echo '<table class="table table-hover">';
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>Name</th>';
-    echo '<th class="text-right">Value</th>';
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
-    foreach ($json as $key => $value)
+    $json = @file_get_contents($jsonURL, FILE_USE_INCLUDE_PATH);
+    
+    if ($json)
     {
-        if ($key <> "Version")
+        $json = json_decode($json, true);
+        echo "<div>Simulator : ".$json['Version']."</div>";
+        echo '<div class="table-responsive">';
+        echo '<table class="table table-hover">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th>Name</th>';
+        echo '<th class="text-right">Value</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+
+        foreach ($json as $key => $value)
         {
-            echo '<tr>';
-            echo '<td><strong>'.$key.'</strong></td>';
-            echo '<td class="text-right"><span class="label label-primary">'.$value.'</span></td>';
-            echo '</tr>';
+            if ($key <> "Version")
+            {
+                echo '<tr>';
+                echo '<td><strong>'.$key.'</strong></td>';
+                echo '<td class="text-right"><span class="label label-primary">'.$value.'</span></td>';
+                echo '</tr>';
+            }
         }
+
+        echo '</tbody>';
+        echo '</table>';
+        echo '</div>';
+
+        unset($sql);
     }
 
-    echo '</tbody>';
-    echo '</table>';
-    echo '</div>';
-
-    unset($sql);
+    else
+    {
+        echo '<div class="alert alert-danger alert-anim-off">';
+        echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+        echo '<i class="glyphicon glyphicon-remove"></i> Server is currently done ...';
+        echo '</div>';
+    }
 }
 ?>
