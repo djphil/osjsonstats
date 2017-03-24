@@ -24,7 +24,7 @@
     <h3>OpenSim.ini</h3>
     <pre>
     [Startup]
-    Agent_Stats_URI = "jsonUserStats"
+    Stats_URI = "jsonSimStats"
     </pre>
 </article>
 <article>
