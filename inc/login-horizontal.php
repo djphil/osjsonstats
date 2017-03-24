@@ -5,7 +5,8 @@
         <i class="glyphicon glyphicon-user"></i> <?php echo $_SESSION['username']; ?>                              
     </div>
     <button type="submit" class="btn btn-default" name="logout">
-        <i class="glyphicon glyphicon-log-out"></i></button>
+        <i class="glyphicon glyphicon-log-out"></i>
+    </button>
 </form>  
 </div>
 <div class="clearfix"></div>
@@ -23,8 +24,8 @@
         <input type="password" class="form-control" name="password" placeholder="Password">                                        
     </div>
     <button class="btn btn-default" type="submit" name="login">
-        <i class="glyphicon glyphicon-log-in"></i></button>
-
+        <i class="glyphicon glyphicon-log-in"></i>
+    </button>
 </form>  
 </div>
 <div class="clearfix"></div>
