@@ -1,11 +1,12 @@
 <section>
 <article>
-    <h1><?php echo $osjsonstats; ?> <span class="pull-right">Help</span></h1>
+    <h1>Help<i class="glyphicon glyphicon-education pull-right"></i></h1>
 </article>
 
 <article>
     <h2>Features</h2>
     Realtime Json Statistics<br />
+    More coming soon ...
 </article>
 
 <article>
@@ -24,8 +25,7 @@
     <h3>OpenSim.ini</h3>
     <pre>
     [Startup]
-    Stats_URI = "jsonSimStats"
-    </pre>
+    Stats_URI = "jsonSimStats"</pre>
 </article>
 <article>
     <h2>Frame Statistics Values</h2>
@@ -52,8 +52,7 @@
     PhysFt - physics frame time
     OthrFt - other frame time
     AgntFt - agent frame time
-    ImgsFt - image frame time
-    </pre>
+    ImgsFt - image frame time</pre>
 </article>
 
 <article>
@@ -68,7 +67,7 @@
 
 <article>
     <h2>Donation</h2>
-    <?php include_once("inc/paypal.php"); ?>
+    <p><?php include_once("inc/paypal.php"); ?></p>
 </article>
 
 </section>
