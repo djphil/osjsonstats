@@ -1,6 +1,5 @@
 <?php if (isset($_SESSION['valid'])): ?>
-<h1>
-    <?php echo $osjsonstats; ?> 
+<h1>Home
     <span class="pull-right">
         <a class="btn btn-success" href="?home" title="Refresh jSonStats">
             <i class="glyphicon glyphicon-refresh"></i> Refresh jSonStats
@@ -39,39 +38,62 @@
 <?php endif; ?>
 
 <?php 
+function curl_get_contents($url) {
+	$ch = curl_init();
+	$timeout = 1;
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+}
+
 if (isset($_SESSION['valid'])) 
 {
-    $json = @file_get_contents($jsonURL, FILE_USE_INCLUDE_PATH);
-    
+    // $json = @file_get_contents($jsonURL, FILE_USE_INCLUDE_PATH);
+    $json = curl_get_contents($jsonURL);
+
     if ($json)
     {
         $json = json_decode($json, true);
-        echo "<div>Simulator : ".$json['Version']."</div>";
-        echo '<div class="table-responsive">';
-        echo '<table class="table table-hover">';
-        echo '<thead>';
-        echo '<tr>';
-        echo '<th>Name</th>';
-        echo '<th class="text-right">Value</th>';
-        echo '</tr>';
-        echo '</thead>';
-        echo '<tbody>';
-
-        foreach ($json as $key => $value)
+        
+        if (isset($json['Version']))
         {
-            if ($key <> "Version")
+            echo "<div>Simulator : ".$json['Version']."</div>";
+            echo '<div class="table-responsive">';
+            echo '<table class="table table-hover">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Name</th>';
+            echo '<th class="text-right">Value</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            foreach ($json as $key => $value)
             {
-                echo '<tr>';
-                echo '<td><strong>'.$key.'</strong></td>';
-                echo '<td class="text-right"><span class="label label-primary">'.$value.'</span></td>';
-                echo '</tr>';
+                if ($key <> "Version")
+                {
+                    echo '<tr>';
+                    echo '<td><strong>'.$key.'</strong></td>';
+                    echo '<td class="text-right"><span class="label label-primary">'.$value.'</span></td>';
+                    echo '</tr>';
+                }
             }
+
+            echo '</tbody>';
+            echo '</table>';
+            echo '</div>';
         }
 
-        echo '</tbody>';
-        echo '</table>';
-        echo '</div>';
-
+        else
+        {
+            echo '<div class="alert alert-success alert-anim-off">';
+            echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+            echo '<i class="glyphicon glyphicon-ok"></i> Server is being started ...';
+            echo '</div>';
+        }
         unset($sql);
     }
 
