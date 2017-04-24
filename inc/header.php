@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="<?php echo $osofflineim; ?>">
+    <meta name="description" content="<?php echo $osjsonstats." v".$version; ?>">
     <meta name="author" content="djphil">
     <link rel="icon" href="img/favicon.ico">
     <link rel="author" href="inc/humans.txt" />
 
-    <title><?php echo $osofflineim; ?></title>
+    <title><?php echo $osjsonstats." v".$version; ?></title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
@@ -23,7 +23,7 @@
     <?php if ($useTheme === TRUE): ?>
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <?php endif ?>
-    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="css/osjsonstats.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/gh-fork-ribbon.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
@@ -51,4 +51,4 @@
             <a href="https://github.com/djphil/osjsonstats" target="_blank">Fork me on GitHub</a>
         </div>
     </div>
-    <?php include_once("login-horizontal.php"); ?>
+    <div class="row">
